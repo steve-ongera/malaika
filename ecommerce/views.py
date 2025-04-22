@@ -29,7 +29,7 @@ def register(request):
             messages.error(request, "Registration failed. Please try again.")
     else:
         form = CustomUserCreationForm()
-    return render(request, "register.html", {"form": form})
+    return render(request, "auth/register.html", {"form": form})
 
 
 def custom_login(request):
@@ -49,7 +49,7 @@ def custom_login(request):
             messages.error(request, "Please correct the errors below.")
     else:
         form = CustomAuthenticationForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "auth/login.html", {"form": form})
 
 
 def custom_logout(request):
@@ -110,7 +110,7 @@ def home_view(request):
         'daily_finds': daily_finds,
         'category_product_pairs': category_product_pairs
     }
-    return render(request, 'home.html', context)
+    return render(request, 'home/home.html', context)
 
 def product_list_view(request):
     products = Product.objects.all()

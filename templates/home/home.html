@@ -1,0 +1,207 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Malaika | World's Best Market{% endblock %}
+
+{% block content %}
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-white">Great deals happening <br> Right Now!</h1>
+                <p>Enjoy a safe, convenient shopping experience</p>
+                <p>Shop stress-free from home. We're ready to help, online or by phone.</p>
+                <a href="#" class="btn btn-main">Explore Now &#8594;</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/laptop-banner.png' %}" alt="banner-image" class="center">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sponsored Products -->
+<div class="small-container mt-5">
+    <h2 class="title">Sponsored Products</h2>
+    <div class="row horizontal-scroll-wrapper squares">
+        {% for product in sponsored_products %}
+            <div class="col-4 box-container">
+                <div class="image-overlay"></div>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h5 class="product_name">{{ product.name }}</h5>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            <i class="fa fa-star"></i>
+                        {% elif forloop.counter == product.rating|add:"0.5"|floatformat:"0" %}
+                            <i class="fa fa-star-half-o"></i>
+                        {% else %}
+                            <i class="fa fa-star-o"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="content-details fadeIn-bottom">
+                    <h3 class="content-title">{{ product.name }}</h3>
+                    <h4 class="content-price">Rs{{ product.price }}</h4>
+                    <div class="content-btn btn btn-secondary" title="Add to Cart">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <p class="price_name">Rs{{ product.price }}</p>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No sponsored products available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Top Selling Products -->
+<div class="small-container">
+    <h2 class="title">Top Selling Products</h2>
+    <div class="row">
+        {% for product in top_selling_products %}
+            <div class="col-4 box-container">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h5 class="product_name">{{ product.name }}</h5>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            <i class="fa fa-star"></i>
+                        {% elif forloop.counter == product.rating|add:"0.5"|floatformat:"0" %}
+                            <i class="fa fa-star-half-o"></i>
+                        {% else %}
+                            <i class="fa fa-star-o"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="price_name">Rs{{ product.price }}</p>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No top selling products available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Daily Finds -->
+<div class="small-container">
+    <h2 class="title">Daily Finds</h2>
+    <div class="row">
+        {% for product in daily_finds %}
+            <div class="col-4 box-container">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h5 class="product_name">{{ product.name }}</h5>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            <i class="fa fa-star"></i>
+                        {% elif forloop.counter == product.rating|add:"0.5"|floatformat:"0" %}
+                            <i class="fa fa-star-half-o"></i>
+                        {% else %}
+                            <i class="fa fa-star-o"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="price_name">Rs{{ product.price }}</p>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No products available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Category Showcase -->
+<div class="small-container">
+    <h2 class="title">Shop by Category</h2>
+    <div class="row">
+        {% for item in category_product_pairs %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="category-card">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.category.name }}" class="category-image">
+                    <div class="category-overlay">
+                        <h3>{{ item.category.name }}</h3>
+                        <a href="{% url 'category' item.category.slug %}" class="btn btn-outline-light">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No categories available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- offer -->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-6">
+                <img src="{% static 'images/asus-banner.png' %}" class="offer-img">
+            </div>
+            <div class="col-6 text-data text-white">
+                <p>Top Products you should check out</p>
+                <h1>Best Product limited offer!</h1>
+                <a href="#" class="btn">Buy Now &#8594;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Sold Products -->
+<div class="small-container">
+    <h2 class="title">Most Popular Products</h2>
+    <div class="row">
+        {% for product in top_sold_products %}
+            <div class="col-4 box-container">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h5 class="product_name">{{ product.name }}</h5>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            <i class="fa fa-star"></i>
+                        {% elif forloop.counter == product.rating|add:"0.5"|floatformat:"0" %}
+                            <i class="fa fa-star-half-o"></i>
+                        {% else %}
+                            <i class="fa fa-star-o"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="price_name">Rs{{ product.price }}</p>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No popular products available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- brands -->
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="{% static 'images/amazon_PNG24.png' %}" alt="amazon logo">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/apple_logo_PNG19675.png' %}" alt="apple logo">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/samsung_logo_PNG2.png' %}" alt="samsung logo">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/mastercard_PNG7.png' %}" alt="mastercard logo">
+            </div>
+            <div class="col-3">
+                <img src="{% static 'images/paypal_PNG19.png' %}" alt="paypal logo">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
