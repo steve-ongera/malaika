@@ -14,7 +14,7 @@ Malaika E-commerce is a robust online shopping platform developed using Django. 
   - Secure login and registration
   - Social media authentication
   - Customizable user profiles
-  - Order history tracking
+  - Order history trackin
 
 - **Product Management**
   - Comprehensive product catalog
