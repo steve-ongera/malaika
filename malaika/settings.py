@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'ecommerce.User'
+AUTHENTICATION_BACKENDS = ['ecommerce.auth_backend.EmailOrUsernameAuthBackend']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +55,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ecommerce.context_processors.navbar_context',  # Add this line
+                'ecommerce.context_processors.categories_processor',
             ],
         },
     },
